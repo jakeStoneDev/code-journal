@@ -24,14 +24,8 @@ imgUrl.addEventListener('input', function (e) {
 });
 
 /* Below this line, listens for the submit event to occur */
-var userInput = {
-  title: '',
-  notes: '',
-  image: '',
-  nextEntryID: ''
-};
-
 /* read local storage for JSON */
+var newEntryID;
 var nextEntryID;
 var previousUserInput;
 var previousUserInputJSON = localStorage.getItem('javascript-local-storage');
@@ -39,8 +33,11 @@ var previousUserInputJSON = localStorage.getItem('javascript-local-storage');
 /* getting previous entry ID and incrementing */
 if (previousUserInputJSON !== null) {
   previousUserInput = JSON.parse(previousUserInputJSON);
+
+  newEntryID = previousUserInput.newEntryID;
   nextEntryID = previousUserInput.nextEntryID + 1;
 } else {
+  newEntryID = 0;
   nextEntryID = 1;
 }
 
@@ -50,13 +47,25 @@ var notes = document.getElementById('notes');
 
 /* adding event listener for submit and setting input values */
 document.addEventListener('submit', function (event) {
+  /* form object */
+  var userInput = {
+    title: '',
+    notes: '',
+    image: '',
+    entryID: ''
+  };
 
   userInput.title = title.value;
   userInput.notes = notes.value;
   userInput.image = imgUrl.value;
-  userInput.nextEntryID = nextEntryID;
+  userInput.entryID = newEntryID;
+
+  /* data object */
+  data.entries = previousUserInput.entries;
+  data.nextEntryId = nextEntryID;
+  data.entries.unshift(userInput);
 
   /* converting input values to json string and storing locally */
-  var inputToJSON = JSON.stringify(userInput);
+  var inputToJSON = JSON.stringify(data);
   localStorage.setItem('javascript-local-storage', inputToJSON);
 });
