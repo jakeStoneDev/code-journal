@@ -1,6 +1,7 @@
 /* global data */
 /* exported data */
 
+/* THIS IS MY MAIN JAVASCRIPT FILE */
 /* This bit of code sets the image url to the match the valid url input of the user */
 var imgUrl = document.getElementById('photo');
 

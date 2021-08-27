@@ -129,17 +129,17 @@ input[type=submit] {
 
 @media (min-width: 482px) and (max-width: 870px) {
   .column-half {
-    width: 30%;
+    width: 33%;
   }
 
   .column-half.img-container {
-    width: 30%;
+    width: 33%;
     height: 250px;
   }
 
   .column-full {
-    margin-left: 19.5%;
-    margin-right: 19.5%;
+    margin-left: 16.5%;
+    margin-right: 16.5%;
   }
 
   input[type=submit] {
