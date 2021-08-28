@@ -7,8 +7,8 @@ body {
 }
 
 .headliner {
-  background-color: rgb(85, 43, 129);
   display: flex;
+  background-color: rgb(85, 43, 129);
   align-items: center;
 }
 
@@ -86,4 +86,17 @@ h2 {
   margin-bottom: 15px;
   font-family: 'Proza Libre', sans-serif;
   font-weight: 600;
+}
+
+.entries-title {
+  font-size: 1.6em;
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 600;
+}
+
+.entries-text {
+  font-size: 0.9em;
+  font-family: open-sans, sans-serif;
 }

@@ -1,6 +1,8 @@
 body {
   width: 100%;
   height: 100vh;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .content-container {
@@ -19,6 +21,7 @@ div[data-view] {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .row {
@@ -35,8 +38,8 @@ div[data-view] {
 .column-full {
   display: flex;
   width: 100%;
-  margin-left: 29.5%;
-  margin-right: 29.5%;
+  margin-left: 24.5%;
+  margin-right: 24.5%;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -48,7 +51,7 @@ div[data-view] {
 }
 
 .column-half {
-  width: 20%;
+  width: 25%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -66,7 +69,7 @@ form {
 }
 
 .img-container {
-  width: 20%;
+  width: 25%;
   height: 250px;
   overflow: hidden;
 }
@@ -83,6 +86,13 @@ input[type=submit] {
 }
 
 @media (max-width: 481px) {
+  .body {
+    display: flex;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+  }
+
   #placed-image,
   .flex-end {
     margin-bottom: 4%;
@@ -102,7 +112,6 @@ input[type=submit] {
   }
 
   .column-full {
-    align-items: left;
     margin-left: 10%;
     margin-right: 10%;
   }
@@ -127,6 +136,7 @@ input[type=submit] {
   }
 }
 
+/* media queries for the new entry section */
 @media (min-width: 482px) and (max-width: 870px) {
   .column-half {
     width: 33%;
@@ -134,7 +144,6 @@ input[type=submit] {
 
   .column-half.img-container {
     width: 33%;
-    height: 250px;
   }
 
   .column-full {
@@ -144,5 +153,122 @@ input[type=submit] {
 
   input[type=submit] {
     width: 13%;
+  }
+}
+
+/* This is the beggining of specific to the entries html page */
+.entries-full-col {
+  display: flex;
+  width: 100%;
+  margin-left: 24.5%;
+  margin-right: 24.5%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.entries-col {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+
+.entries-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 60px;
+  margin-top: 25px;
+}
+
+.img-wrapper1 {
+  display: flex;
+  width: 96%;
+  height: 300px;
+  background-position: center;
+  background-size: cover;
+  background-image: url(../images/lovelace.png);
+  margin-bottom: 60px;
+}
+
+.img-wrapper2 {
+  display: flex;
+  width: 96%;
+  height: 300px;
+  background-position: bottom;
+  background-size: cover;
+  background-image: url(../images/JavaScript-logo.png);
+  margin-bottom: 60px;
+}
+
+.entries-title {
+  font-size: 1.6em;
+  margin-top: 0;
+  padding-top: 0;
+  margin-bottom: 10px;
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 600;
+  line-height: 25px;
+}
+
+.entries-text {
+  font-size: 0.8em;
+  font-family: open-sans, sans-serif;
+  margin-bottom: 8px;
+}
+
+.entries-divider-col {
+  display: flex;
+  width: 1%;
+}
+
+/* media queries for the entries section */
+@media (min-width: 600px) and (max-width: 700px) {
+  .entries-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .entries-col {
+    width: 50%;
+  }
+
+  .entries-divider-col {
+    visibility: hidden;
+  }
+
+  .entries-full-col {
+    display: flex;
+    width: 100%;
+    margin-left: 24.5%;
+    margin-right: 24.5%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 599px) {
+  .entries-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .entries-col {
+    width: 60%;
+  }
+
+  .entries-full-col {
+    display: flex;
+    width: 100%;
+    margin-left: 19.5%;
+    margin-right: 19.5%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .entries-divider-col {
+    visibility: hidden;
   }
 }
