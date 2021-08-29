@@ -68,23 +68,40 @@
 
         <div class="row">
           <div class="column-full flex-end">
-            <input type="submit" id="submit" value="Save">
+            <input class="purp-button" type="submit" id="submit" value="Save">
           </div>
         </div>
       </div>
   </main>
-  <main class="content-container">
-    <div data-view="entry-form">
       <header class="headliner">
-        <div class="row">
-          <div class="entries-full-col">
+        <div class="entries-row">
+          <div class="entries-nav">
             <h1>Code Journal</h1>
+            <div class="entries-divider-col"></div>
+            <h3><a class="entries-nav" href="#">Entries</a></h3>
           </div>
         </div>
       </header>
+      <div data-view="entry-form">
+
+        <div class="entry-header">
+          <div class="entry-col">
+            <div>
+              <h2>New Entry</h2>
+            </div>
+          </div>
+
+          <div class="entry-col">
+            <div>
+              <input type="button" class="purp-button" value="New">
+            </div>
+          </div>
+        </div>
+
+
       <ul>
         <li>
-          <div class="row entries-row">
+          <div class="entries-row">
             <div class="entries-col">
               <div class="img-wrapper1">
 
@@ -107,7 +124,7 @@
           </div>
         </li>
         <li>
-          <div class="row entries-row">
+          <div class="entries-row">
             <div class="entries-col">
               <div class="img-wrapper2">
 
@@ -128,7 +145,6 @@
         </li>
       </ul>
     </div>
-    </main>
 </form>
 <script src="js/data.js"></script>
 <script src="js/main.js"></script>

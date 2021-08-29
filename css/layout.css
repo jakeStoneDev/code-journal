@@ -1,6 +1,7 @@
 body {
   width: 100%;
   height: 100vh;
+  overflow-x: scroll;
   margin: 0;
   box-sizing: border-box;
 }
@@ -9,6 +10,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-bottom: 10px;
 }
 
 .headliner {
@@ -81,11 +83,7 @@ form {
   object-position: center;
 }
 
-input[type=submit] {
-  width: 13%;
-}
-
-@media (max-width: 481px) {
+@media (max-width: 599px) {
   .body {
     display: flex;
     width: 100vw;
@@ -118,6 +116,59 @@ input[type=submit] {
 
   .column-half.img-container {
     width: 80%;
+    align-items: center;
+  }
+
+  #placed-image {
+    height: 385px;
+    width: 385px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  h2 {
+    align-items: left;
+  }
+
+  .input {
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 800px) {
+  .body {
+    display: flex;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #placed-image,
+  .flex-end {
+    margin-bottom: 4%;
+  }
+
+  .row.form-row {
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+  }
+
+  .column-half {
+    flex: 1;
+    height: 100%;
+    width: 385px;
+  }
+
+  .column-full {
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+  }
+
+  .column-half.img-container {
+    width: 80%;
+    align-items: center;
   }
 
   #placed-image {
@@ -137,24 +188,6 @@ input[type=submit] {
 }
 
 /* media queries for the new entry section */
-@media (min-width: 482px) and (max-width: 870px) {
-  .column-half {
-    width: 33%;
-  }
-
-  .column-half.img-container {
-    width: 33%;
-  }
-
-  .column-full {
-    margin-left: 16.5%;
-    margin-right: 16.5%;
-  }
-
-  input[type=submit] {
-    width: 13%;
-  }
-}
 
 /* This is the beggining of specific to the entries html page */
 .entries-full-col {
@@ -164,7 +197,7 @@ input[type=submit] {
   margin-right: 24.5%;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .entries-col {
@@ -176,14 +209,12 @@ input[type=submit] {
 .entries-row {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  margin-bottom: 60px;
-  margin-top: 25px;
+  width: 100%;
 }
 
 .img-wrapper1 {
   display: flex;
-  width: 96%;
+  width: 100%;
   height: 300px;
   background-position: center;
   background-size: cover;
@@ -193,11 +224,12 @@ input[type=submit] {
 
 .img-wrapper2 {
   display: flex;
-  width: 96%;
+  width: 100%;
   height: 300px;
   background-position: bottom;
   background-size: cover;
-  background-image: url(../images/JavaScript-logo.png);
+  background-repeat: no-repeat;
+  background-image: url(../images/pexels-markus-spiske-2004161.jpg);
   margin-bottom: 60px;
 }
 
@@ -205,14 +237,14 @@ input[type=submit] {
   font-size: 1.6em;
   margin-top: 0;
   padding-top: 0;
-  margin-bottom: 10px;
+  margin-right: 10px;
   font-family: 'Proza Libre', sans-serif;
   font-weight: 600;
   line-height: 25px;
 }
 
 .entries-text {
-  font-size: 0.8em;
+  font-size: 0.7em;
   font-family: open-sans, sans-serif;
   margin-bottom: 8px;
 }
@@ -222,15 +254,56 @@ input[type=submit] {
   width: 1%;
 }
 
-/* media queries for the entries section */
-@media (min-width: 600px) and (max-width: 700px) {
+.entries-new {
+  width: 100%;
+  display: flex;
+  margin-left: 24.5%;
+  margin-right: 24.5%;
+  flex-direction: row;
+  align-items: center;
+}
+
+.entries-nav {
+  width: 100%;
+  display: flex;
+  margin-left: 24.5%;
+  flex-direction: row;
+  justify-content: flex-start;
+  color: white;
+  text-decoration: none;
+  font-weight: 200;
+}
+
+.entry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 24.5%;
+  padding-right: 24.5%;
+}
+
+ul li {
+  margin-bottom: 30px;
+}
+
+@media (min-width: 600px) and (max-width: 1100px) {
   .entries-row {
     flex-direction: column;
     align-items: center;
   }
 
   .entries-col {
-    width: 50%;
+    width: 75%;
+  }
+
+  .entry-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 12.5%;
+    padding-right: 12.5%;
   }
 
   .entries-divider-col {
@@ -244,31 +317,48 @@ input[type=submit] {
     margin-right: 24.5%;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
   }
 }
 
+/* small screens */
 @media (max-width: 599px) {
   .entries-row {
+    width: 100%;
     flex-direction: column;
     align-items: center;
   }
 
   .entries-col {
-    width: 60%;
+    width: 75%;
+    align-items: center;
+  }
+
+  .entry-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 12.5%;
+    padding-right: 12.5%;
   }
 
   .entries-full-col {
     display: flex;
     width: 100%;
-    margin-left: 19.5%;
-    margin-right: 19.5%;
-    flex-direction: column;
-    justify-content: center;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: flex-start;
   }
 
   .entries-divider-col {
     visibility: hidden;
+  }
+
+  .entries-new {
+    margin-right: 12%;
+    margin-left: 12%;
   }
 }
