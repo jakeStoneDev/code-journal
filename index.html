@@ -27,7 +27,7 @@
 <form>
   <main class="content-container">
 <!--Main data view div-->
-      <div data-view="entry-form">
+      <div data-view="input-form">
         <header class="headliner">
             <div class="row">
               <div class="column-full">
@@ -35,7 +35,7 @@
               </div>
             </div>
         </header>
-        <div class="row">
+        <div class="row space">
           <div class="column-full">
             <h2>New Entry</h2>
           </div>
@@ -82,9 +82,10 @@
           </div>
         </div>
       </header>
+
       <div data-view="entry-form">
 
-        <div class="entry-header">
+        <div class="entry-header space">
           <div class="entry-col">
             <div>
               <h2>New Entry</h2>
@@ -99,50 +100,8 @@
         </div>
 
 
-      <ul class="entry-list">
-        <li class="entry">
-          <div class="entries-row">
-            <div class="entries-col-img">
-              <div class="img-wrapper1">
-
-              </div>
-            </div>
-            <div class="entries-divider-col"></div>
-            <div class="entries-col">
-              <h2 class="entries-title">Ada Lovelace</h2>
-              <p class="entries-text">Augusta Ada King, Countess of Lovelace was
-                an English mathematician and writer, chiefly
-                known for her work on Charles Babbage's proposed
-                mechanical general-purpose computer, the Analytical
-                Engine.</p>
-
-              <p class="entries-text">She was the first to recognize that the machine had
-                applications beyond pure calculation, and to have published
-                the first algorithm inteded to be carried out by such a machine.
-              </p>
-            </div>
-          </div>
-        </li>
-        <li class="entry">
-          <div class="entries-row">
-            <div class="entries-col">
-              <div class="img-wrapper2">
-
-              </div>
-            </div>
-            <div class="divider-col"></div>
-            <div class="entries-col">
-              <h2 class="entries-title">JavaScript</h2>
-              <p class="entries-text">JavaScript, often abbreviated as JS, is a programming
-                language that conforms to the ECMAScript specification.</p>
-
-              <p class="entries-text">JavaScript is high-level, often just-in-time compiled, and
-                multi-paradigm. It has curly-bracket syntax, dynamic typing, prototype-based
-                object-orientation, and first-class functions.
-              </p>
-            </div>
-          </div>
-        </li>
+      <ul id="entry-list">
+        <li id="no-entry"><h3 class="no-entry-text">No entries have been recorded.</h3></li>
       </ul>
     </div>
 </form>

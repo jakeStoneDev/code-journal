@@ -81,8 +81,8 @@ document.addEventListener('submit', function (event) {
 function entryDOM(data) {
 
   /* Loops through stored data and uses data for new elements */
-  var entryContainer = document.createElement('ul');
-  entryContainer.className('entry-list');
+  var entryContainer = document.getElementById('entry-list');
+
   for (var i = 0; i < data.entries.length; i++) {
     /* Creates new elements using DOM */
     var newEntryRow = document.createElement('div');
@@ -94,12 +94,15 @@ function entryDOM(data) {
     var imgEntryCol = document.createElement('div');
     imgEntryCol.className = 'entries-col-img';
 
+    var dividerCol = document.createElement('div');
+    dividerCol.className = 'entries-divider-col';
+
     var title = document.createElement('h2');
     title.className = 'entries-title';
     title.textContent = data.entries[i].title;
 
     var imgURL = document.createElement('div');
-    imgURL.className = 'img-wrapper-1';
+    imgURL.className = 'img-wrapper1';
     imgURL.style.backgroundImage = 'url(' + data.entries[i].image + ')';
 
     var entryNotes = document.createElement('p');
@@ -111,10 +114,16 @@ function entryDOM(data) {
     newEntryCol.appendChild(entryNotes);
     imgEntryCol.appendChild(imgURL);
     newEntryRow.appendChild(imgEntryCol);
+    newEntryRow.appendChild(dividerCol);
     newEntryRow.appendChild(newEntryCol);
     var NewEntry = document.createElement('li');
     NewEntry.className = 'entry';
     NewEntry.appendChild(newEntryRow);
+    /* This container holds an entire new entry */
+    var placeholder = document.getElementById('no-entry');
+    placeholder.style.display = 'none';
+    entryContainer.appendChild(NewEntry);
   }
 }
-entryDOM(data);
+
+document.addEventListener('DOMContentLoaded', entryDOM(data));

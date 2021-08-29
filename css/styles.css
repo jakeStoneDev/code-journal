@@ -88,8 +88,6 @@ h1 {
 
 h2 {
   font-size: 1.6em;
-  margin-top: 15px;
-  margin-bottom: 15px;
   font-family: 'Proza Libre', sans-serif;
   font-weight: 600;
 }
@@ -105,4 +103,9 @@ h2 {
 .entries-text {
   font-size: 1em;
   font-family: open-sans, sans-serif;
+}
+
+.space {
+  margin-top: 40px;
+  margin-bottom: 25px;
 }
