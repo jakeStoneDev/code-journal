@@ -127,3 +127,20 @@ function entryDOM(data) {
 }
 
 document.addEventListener('DOMContentLoaded', entryDOM(data));
+
+/* click event on anchor to change views to entries */
+var entriesTab = document.querySelector('.entries-anchor');
+var entriesList = document.querySelector('[data-view="entry-form"]');
+var entryForm = document.querySelector('[data-view="input-form"]');
+entriesTab.addEventListener('click', function () {
+  entryForm.className = 'view-hidden';
+  entriesList.className = 'view';
+});
+
+/* click event on new button to return to main */
+var newButton = document.getElementById('newEntryButton');
+
+newButton.addEventListener('click', function () {
+  entriesList.className = 'view-hidden';
+  entryForm.className = 'view';
+});

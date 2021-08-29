@@ -27,13 +27,15 @@
 <form>
   <main class="content-container">
 <!--Main data view div-->
-      <div data-view="input-form">
+      <div class="view" data-view="input-form">
         <header class="headliner">
-            <div class="row">
-              <div class="column-full">
-                <h1>Code Journal</h1>
-              </div>
+          <div class="entries-row">
+            <div class="entries-nav">
+              <h1>Code Journal</h1>
+              <div class="entries-divider-col"></div>
+              <h3><a class="entries-anchor" href="#">Entries</a></h3>
             </div>
+          </div>
         </header>
         <div class="row space">
           <div class="column-full">
@@ -73,17 +75,16 @@
         </div>
       </div>
   </main>
+  <div class="view-hidden" data-view="entry-form">
       <header class="headliner">
         <div class="entries-row">
           <div class="entries-nav">
             <h1>Code Journal</h1>
             <div class="entries-divider-col"></div>
-            <h3><a class="entries-nav" href="#">Entries</a></h3>
+            <h3><a class="entries-anchor" href="#">Entries</a></h3>
           </div>
         </div>
       </header>
-
-      <div data-view="entry-form">
 
         <div class="entry-header space">
           <div class="entry-col">
@@ -94,7 +95,7 @@
 
           <div class="entry-col">
             <div>
-              <input type="button" class="purp-button" value="New">
+              <input type="button" id="newEntryButton" class="purp-button" value="New">
             </div>
           </div>
         </div>
