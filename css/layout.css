@@ -206,6 +206,12 @@ form {
   width: 25%;
 }
 
+.entries-col-img {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+
 .entries-row {
   display: flex;
   justify-content: center;
@@ -297,6 +303,10 @@ ul li {
     width: 75%;
   }
 
+  .entries-col-img {
+    width: 75%;
+  }
+
   .entry-header {
     display: flex;
     align-items: center;
@@ -330,6 +340,11 @@ ul li {
   }
 
   .entries-col {
+    width: 75%;
+    align-items: center;
+  }
+
+  .entries-col-img {
     width: 75%;
     align-items: center;
   }

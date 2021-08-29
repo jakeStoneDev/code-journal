@@ -25,20 +25,26 @@ imgUrl.addEventListener('input', function (e) {
 
 /* Below this line, listens for the submit event to occur */
 /* read local storage for JSON */
-var newEntryID;
-var nextEntryID;
+var newEntryId;
+var nextEntryId;
 var previousUserInput;
 var previousUserInputJSON = localStorage.getItem('javascript-local-storage');
 
 /* getting previous entry ID and incrementing */
 if (previousUserInputJSON !== null) {
   previousUserInput = JSON.parse(previousUserInputJSON);
+  newEntryId = previousUserInput.nextEntryId;
+  nextEntryId = previousUserInput.nextEntryId + 1;
 
-  newEntryID = previousUserInput.newEntryID;
-  nextEntryID = previousUserInput.nextEntryID + 1;
+  /* get prior data object */
+  if (previousUserInput) {
+    data.entries = previousUserInput.entries;
+    data.nextEntryId = nextEntryId;
+  }
+
 } else {
-  newEntryID = 0;
-  nextEntryID = 1;
+  newEntryId = 0;
+  nextEntryId = 1;
 }
 
 /* getting form elements */
@@ -47,6 +53,9 @@ var notes = document.getElementById('notes');
 
 /* adding event listener for submit and setting input values */
 document.addEventListener('submit', function (event) {
+
+  // event.preventDefault();
+
   /* form object */
   var userInput = {
     title: '',
@@ -58,14 +67,54 @@ document.addEventListener('submit', function (event) {
   userInput.title = title.value;
   userInput.notes = notes.value;
   userInput.image = imgUrl.value;
-  userInput.entryID = newEntryID;
+  userInput.entryID = newEntryId;
 
-  /* data object */
-  data.entries = previousUserInput.entries;
-  data.nextEntryId = nextEntryID;
+  /* add new data to data object */
   data.entries.unshift(userInput);
 
   /* converting input values to json string and storing locally */
   var inputToJSON = JSON.stringify(data);
   localStorage.setItem('javascript-local-storage', inputToJSON);
 });
+
+/* User can view their entries */
+function entryDOM(data) {
+
+  /* Loops through stored data and uses data for new elements */
+  var entryContainer = document.createElement('ul');
+  entryContainer.className('entry-list');
+  for (var i = 0; i < data.entries.length; i++) {
+    /* Creates new elements using DOM */
+    var newEntryRow = document.createElement('div');
+    newEntryRow.className = 'entries-row';
+
+    var newEntryCol = document.createElement('div');
+    newEntryCol.className = 'entries-col';
+
+    var imgEntryCol = document.createElement('div');
+    imgEntryCol.className = 'entries-col-img';
+
+    var title = document.createElement('h2');
+    title.className = 'entries-title';
+    title.textContent = data.entries[i].title;
+
+    var imgURL = document.createElement('div');
+    imgURL.className = 'img-wrapper-1';
+    imgURL.style.backgroundImage = 'url(' + data.entries[i].image + ')';
+
+    var entryNotes = document.createElement('p');
+    entryNotes.textContent = data.entries[i].notes;
+    entryNotes.className = 'entries-text';
+
+    /* appends the new elements to their parent element */
+    newEntryCol.appendChild(title);
+    newEntryCol.appendChild(entryNotes);
+    imgEntryCol.appendChild(imgURL);
+    newEntryRow.appendChild(imgEntryCol);
+    newEntryRow.appendChild(newEntryCol);
+    var NewEntry = document.createElement('li');
+    NewEntry.className = 'entry';
+    NewEntry.appendChild(newEntryRow);
+  }
+}
+entryDOM(data);
