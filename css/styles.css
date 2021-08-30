@@ -58,6 +58,13 @@ input[type=button]:hover {
   cursor: pointer;
 }
 
+.img-wrapper1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url(../images/lovelace.png);
+  margin-bottom: 60px;
+}
+
 textarea {
   width: 100%;
   border: 1px solid darkgray;
@@ -95,14 +102,30 @@ h2 {
 .entries-title {
   font-size: 1.6em;
   margin-top: 0;
+  padding-top: 0;
+  margin-right: 10px;
   margin-bottom: 8px;
   font-family: 'Proza Libre', sans-serif;
   font-weight: 600;
+  line-height: 25px;
 }
 
 .entries-text {
   font-size: 1em;
   font-family: open-sans, sans-serif;
+  margin-bottom: 8px;
+}
+
+.entries-nav {
+  color: white;
+  text-decoration: none;
+  font-weight: 200;
+}
+
+.entries-anchor {
+  color: white;
+  text-decoration: none;
+  font-weight: 200;
 }
 
 .space {

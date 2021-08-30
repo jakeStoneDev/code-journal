@@ -10,7 +10,6 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 10px;
 }
 
 .headliner {
@@ -243,26 +242,6 @@ form {
   display: flex;
   width: 100%;
   height: 300px;
-  background-position: center;
-  background-size: cover;
-  background-image: url(../images/lovelace.png);
-  margin-bottom: 60px;
-}
-
-.entries-title {
-  font-size: 1.6em;
-  margin-top: 0;
-  padding-top: 0;
-  margin-right: 10px;
-  font-family: 'Proza Libre', sans-serif;
-  font-weight: 600;
-  line-height: 25px;
-}
-
-.entries-text {
-  font-size: 0.7em;
-  font-family: open-sans, sans-serif;
-  margin-bottom: 8px;
 }
 
 .entries-divider-col {
@@ -285,9 +264,6 @@ form {
   margin-left: 24.5%;
   flex-direction: row;
   justify-content: flex-start;
-  color: white;
-  text-decoration: none;
-  font-weight: 200;
 }
 
 .entries-anchor {
@@ -296,9 +272,6 @@ form {
   margin-left: 24.5%;
   flex-direction: row;
   justify-content: flex-start;
-  color: white;
-  text-decoration: none;
-  font-weight: 200;
 }
 
 .entry-header {
