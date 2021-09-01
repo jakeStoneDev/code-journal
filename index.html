@@ -24,10 +24,10 @@
 </head>
 
 <body>
-<form>
+<form id="">
   <main class="content-container">
 <!--Main data view div-->
-      <div class="view" data-view="input-form">
+      <div class="view" data-view="entry-form">
         <header class="headliner">
           <div class="entries-row">
             <div class="entries-nav">
@@ -70,12 +70,13 @@
 
         <div class="row">
           <div class="column-full flex-end">
-            <input class="purp-button" type="submit" id="submit" value="Save">
+            <input class="purp-button" type="submit" id="save" value="Save">
           </div>
         </div>
       </div>
   </main>
-  <div class="view-hidden" data-view="entry-form">
+</form>
+  <div class="view-hidden" data-view="entries">
       <header class="headliner">
         <div class="entries-row">
           <div class="entries-nav">
@@ -105,7 +106,6 @@
         <li id="no-entry"><h3 class="no-entry-text">No entries have been recorded.</h3></li>
       </ul>
     </div>
-</form>
 <script src="js/data.js"></script>
 <script src="js/main.js"></script>
 </body>

@@ -62,7 +62,6 @@ input[type=button]:hover {
   background-position: center;
   background-size: cover;
   background-image: url(../images/lovelace.png);
-  margin-bottom: 60px;
 }
 
 textarea {
@@ -131,4 +130,8 @@ h2 {
 .space {
   margin-top: 40px;
   margin-bottom: 25px;
+}
+
+.view {
+  margin-bottom: 20px;
 }
