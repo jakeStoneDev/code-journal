@@ -74,6 +74,8 @@ document.addEventListener('submit', function (event) {
 
   /* add new data to data object */
   data.entries.unshift(userInput);
+  document.getElementById('form').reset();
+  placeholderImg.src = 'images/placeholder-image-square.jpg';
   /* converting input values to json string and storing locally */
   var inputToJSON = JSON.stringify(data);
   localStorage.setItem('javascript-local-storage', inputToJSON);
