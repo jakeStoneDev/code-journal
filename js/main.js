@@ -93,7 +93,7 @@ document.addEventListener('submit', function (event) {
 /* Places dom elements on page load */
 function loadEntries(data) {
   /* Loops through stored data and uses data for new elements */
-  for (var i = 0; i < data.entries.length; i++) {
+  for (var i = data.entries.length - 1; i >= 0; i--) {
     /* Creates new elements using DOM */
     addEntry(data.entries[i]);
   }
