@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Code Journal</title>
-  <link rel="icon" href="images/noun_code_679732.png">
+  <link rel="icon" href="images/favicon.ico">
   <link
     rel="stylesheet"
     crossorigin="anonymous"
@@ -24,18 +24,20 @@
 </head>
 
 <body>
-<form>
+<form id="form">
   <main class="content-container">
-
-      <div data-view="entry-form">
+<!--Main data view div-->
+      <div class="view" data-view="entry-form">
         <header class="headliner">
-            <div class="row">
-              <div class="column-full">
-                <h1>Code Journal</h1>
-              </div>
+          <div class="entries-row">
+            <div class="entries-nav">
+              <h1>Code Journal</h1>
+              <div class="entries-divider-col"></div>
+              <h3><a class="entries-anchor" href="#">Entries</a></h3>
             </div>
+          </div>
         </header>
-        <div class="row">
+        <div class="row space">
           <div class="column-full">
             <h2>New Entry</h2>
           </div>
@@ -68,12 +70,42 @@
 
         <div class="row">
           <div class="column-full flex-end">
-            <input type="submit" id="submit" value="Save">
+            <input class="purp-button" type="submit" id="save" value="Save">
           </div>
         </div>
       </div>
   </main>
 </form>
+  <div class="view-hidden" data-view="entries">
+      <header class="headliner">
+        <div class="entries-row">
+          <div class="entries-nav">
+            <h1>Code Journal</h1>
+            <div class="entries-divider-col"></div>
+            <h3><a class="entries-anchor" href="#">Entries</a></h3>
+          </div>
+        </div>
+      </header>
+
+        <div class="entry-header space">
+          <div class="entry-col">
+            <div>
+              <h2>New Entry</h2>
+            </div>
+          </div>
+
+          <div class="entry-col">
+            <div>
+              <input type="button" id="newEntryButton" class="purp-button" value="New">
+            </div>
+          </div>
+        </div>
+
+
+      <ul id="entry-list">
+        <li id="no-entry"><h3 class="no-entry-text">No entries have been recorded.</h3></li>
+      </ul>
+    </div>
 <script src="js/data.js"></script>
 <script src="js/main.js"></script>
 </body>
