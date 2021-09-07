@@ -1,7 +1,6 @@
 /* global data */
 /* exported data */
-/* branch2 */
-/* THIS IS MY MAIN JAVASCRIPT FILE */
+
 /* Content loaded */
 document.addEventListener('DOMContentLoaded', function () {
   loadEntries(data);
@@ -34,24 +33,13 @@ imgUrl.addEventListener('input', function (e) {
 
 /* Below this line, listens for the submit event to occur */
 /* read local storage for JSON */
-var newEntryId;
-var nextEntryId;
 var previousUserInput;
 var previousUserInputJSON = localStorage.getItem('javascript-local-storage');
 /* getting previous entry ID and incrementing */
 if (previousUserInputJSON !== null) {
   previousUserInput = JSON.parse(previousUserInputJSON);
-  newEntryId = previousUserInput.nextEntryId;
-  nextEntryId = previousUserInput.nextEntryId + 1;
-  /* get prior data object */
-  if (previousUserInput) {
-    data.entries = previousUserInput.entries;
-    data.nextEntryId = nextEntryId;
-    data.view = previousUserInput.view;
-  }
-} else {
-  newEntryId = 0;
-  nextEntryId = 1;
+  data.entries = previousUserInput.entries;
+  data.view = previousUserInput.view;
 }
 
 /* getting form elements */
@@ -70,9 +58,10 @@ document.addEventListener('submit', function (event) {
   userInput.title = title.value;
   userInput.notes = notes.value;
   userInput.image = imgUrl.value;
-  userInput.entryID = newEntryId;
+  userInput.entryID = data.nextEntryId;
 
   /* add new data to data object */
+  data.nextEntryId++;
   data.entries.unshift(userInput);
   document.getElementById('form').reset();
   placeholderImg.src = 'images/placeholder-image-square.jpg';
