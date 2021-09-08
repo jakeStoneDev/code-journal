@@ -6,6 +6,17 @@ body {
   background-color: #f2f2f2;
 }
 
+.absoluteImg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.absoluteImg:hover {
+  cursor: pointer;
+}
+
 .headliner {
   display: flex;
   background-color: rgb(85, 43, 129);

@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-/* This bit of code sets the image url to the match the valid url input of the user */
+/* Sets img on entry form before submit */
 var imgUrl = document.getElementById('photo');
 var placeholderImg = document.getElementById('placed-image');
 function validURL(str) {
@@ -31,65 +31,54 @@ imgUrl.addEventListener('input', function (e) {
   }
 });
 
-/* Below this line, listens for the submit event to occur */
-/* read local storage for JSON */
-var previousUserInput;
-var previousUserInputJSON = localStorage.getItem('javascript-local-storage');
-/* getting previous entry ID and incrementing */
-if (previousUserInputJSON !== null) {
-  previousUserInput = JSON.parse(previousUserInputJSON);
-  data.entries = previousUserInput.entries;
-  data.view = previousUserInput.view;
-}
-
 /* getting form elements */
 var title = document.getElementById('title');
 var notes = document.getElementById('notes');
+
 /* adding event listener for submit and setting input values */
 document.addEventListener('submit', function (event) {
   event.preventDefault();
-  /* form object */
+
+  /* UserInput Object */
   var userInput = {
     title: '',
     notes: '',
     image: '',
-    entryID: ''
+    entryId: ''
   };
+  /* UserInput Object values are set */
   userInput.title = title.value;
   userInput.notes = notes.value;
   userInput.image = imgUrl.value;
-  userInput.entryID = data.nextEntryId;
+  userInput.entryId = data.nextEntryId;
 
-  /* add new data to data object */
+  /* data object is updated */
   data.nextEntryId++;
   data.entries.unshift(userInput);
-  document.getElementById('form').reset();
-  placeholderImg.src = 'images/placeholder-image-square.jpg';
-  /* converting input values to json string and storing locally */
+
+  /* storing input values locally */
   var inputToJSON = JSON.stringify(data);
   localStorage.setItem('javascript-local-storage', inputToJSON);
 
-  entriesPage.className = 'view-hidden';
-  inputForm.className = 'view';
-  /* takes current user input and turns it into dom element. Prepends it to page */
-  addEntry(userInput);
   /* clear form input */
   document.getElementById('form').reset();
   placeholderImg.src = 'images/placeholder-image-square.jpg';
   showEntries();
 });
 
-/* Places dom elements on page load */
+/* Loops through data.entries and prepends each index to page */
+var entryContainer = document.getElementById('entry-list');
 function loadEntries(data) {
-  /* Loops through stored data and uses data for new elements */
   for (var i = data.entries.length - 1; i >= 0; i--) {
-    /* Creates new elements using DOM */
-    addEntry(data.entries[i]);
+    var newEntry = addEntry([data.entries[i]]);
+    console.log('entryContainer:', entryContainer);
+    console.log('[data.entries[i]]:', [data.entries[i]]);
+    console.log('addEntry([data.entries[i]]):', newEntry);
+    entryContainer.prepend(newEntry);
   }
 }
 
-var entryContainer = document.getElementById('entry-list');
-/* This function turns entry data into a DOM element */
+/* This function turns UserInput into a DOM elements */
 function addEntry(entry) {
   var newEntryRow = document.createElement('div');
   newEntryRow.className = 'entries-row';
@@ -104,45 +93,66 @@ function addEntry(entry) {
   dividerCol.className = 'entries-divider-col';
 
   var title = document.createElement('h2');
-  title.className = 'entries-title';
-  title.textContent = entry.title;
+  title.className = data.entries.title;
+  title.textContent = 'title text';
 
   var imgURL = document.createElement('div');
   imgURL.className = 'img-wrapper1';
   imgURL.style.backgroundImage = 'url(' + entry.image + ')';
-
   var entryNotes = document.createElement('p');
   entryNotes.textContent = entry.notes;
   entryNotes.className = 'entries-text';
 
+  var editPen = document.createElement('img');
+  editPen.src = 'images/purpPen.svg';
+  editPen.className = 'absoluteImg';
+  editPen.setAttribute('entryId', entry.entryId);
+
   /* appends the new elements to their parent element */
   newEntryCol.appendChild(title);
+  newEntryCol.appendChild(editPen);
   newEntryCol.appendChild(entryNotes);
   imgEntryCol.appendChild(imgURL);
   newEntryRow.appendChild(imgEntryCol);
   newEntryRow.appendChild(dividerCol);
   newEntryRow.appendChild(newEntryCol);
-  var NewEntry = document.createElement('li');
-  NewEntry.className = 'entry';
-  NewEntry.appendChild(newEntryRow);
-  /* This container holds an entire new entry */
+  var newEntry = document.createElement('li');
+  newEntry.className = 'entry';
+  newEntry.appendChild(newEntryRow);
+
   var placeholder = document.getElementById('no-entry');
   placeholder.style.display = 'none';
-  /* Adds entry to front of entries */
-  entryContainer.prepend(NewEntry);
+
+  return newEntry;
 }
+
+entryContainer.addEventListener('click', function (event) {
+  if (event.target.className !== 'absoluteImg') {
+    return false;
+  } else {
+    for (var i = data.entries.length - 1; i >= 0; i--) {
+      if (data.entries[i].entryId === parseInt(event.target.getAttribute('entryId'))) {
+        title.value = data.entries[i].title;
+        imgUrl.value = data.entries[i].image;
+        notes.value = data.entries[i].notes;
+        showEntryForm();
+        data.editing = data.entries[i];
+      }
+    }
+  }
+});
 
 /* click event on anchor to change views to entries */
 var entriesTab = document.querySelector('.entries-anchor');
-var entriesPage = document.querySelector('[data-view="entries"]');
-var inputForm = document.querySelector('[data-view="entry-form"]');
+var entries = document.querySelector('[data-view="entries"]');
+var entryForm = document.querySelector('[data-view="entry-form"]');
 
 /* click event on nav item for entries page view */
 function showEntries() {
   data.view = 'entries';
 
-  inputForm.className = 'view-hidden';
-  entriesPage.className = 'view';
+  entryForm.className = 'view-hidden';
+  entries.className = 'view';
 
   // Save view to local storage
   var inputToJSON = JSON.stringify(data);
@@ -158,8 +168,8 @@ entriesTab.addEventListener('click', function () {
 function showEntryForm() {
   data.view = 'entry-form';
 
-  entriesPage.className = 'view-hidden';
-  inputForm.className = 'view';
+  entries.className = 'view-hidden';
+  entryForm.className = 'view';
 
   // Save view to local storage
   var inputToJSON = JSON.stringify(data);
