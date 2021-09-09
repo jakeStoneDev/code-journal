@@ -1,7 +1,7 @@
 /* global data */
 /* exported data */
 
-/* Content loaded */
+/* Content loaded and view set */
 document.addEventListener('DOMContentLoaded', function () {
   loadEntries(data);
   if (data.view === 'entries') {
@@ -39,30 +39,44 @@ var notes = document.getElementById('notes');
 document.addEventListener('submit', function (event) {
   event.preventDefault();
 
-  /* UserInput Object */
+  /* New UserInput Object */
   var userInput = {
     title: '',
     notes: '',
     image: '',
     entryId: ''
   };
-  /* UserInput Object values are set */
+
+  /* UserInput Object values are set by input */
   userInput.title = title.value;
   userInput.notes = notes.value;
   userInput.image = imgUrl.value;
   userInput.entryId = data.nextEntryId;
 
-  /* data object is updated */
-  data.nextEntryId++;
-  data.entries.unshift(userInput);
+  /* if an entry is being edited, match the id and change the values to user input */
+  if (data.editing !== null) {
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.editing === data.entries[i].entryId) {
+        data.entries[i].title = title.value;
+        data.entries[i].notes = notes.value;
+        data.entries[i].image = imgUrl.value;
+      }
+    }
+    return;
+  } else {
+  /* data object is updated with the new entry */
+    data.nextEntryId++;
+    data.entries.unshift(userInput);
+  }
 
   /* storing input values locally */
   var inputToJSON = JSON.stringify(data);
   localStorage.setItem('javascript-local-storage', inputToJSON);
 
-  /* clear form input */
+  /* reset form */
   document.getElementById('form').reset();
   placeholderImg.src = 'images/placeholder-image-square.jpg';
+
   showEntries();
 });
 
@@ -70,10 +84,7 @@ document.addEventListener('submit', function (event) {
 var entryContainer = document.getElementById('entry-list');
 function loadEntries(data) {
   for (var i = data.entries.length - 1; i >= 0; i--) {
-    var newEntry = addEntry([data.entries[i]]);
-    console.log('entryContainer:', entryContainer);
-    console.log('[data.entries[i]]:', [data.entries[i]]);
-    console.log('addEntry([data.entries[i]]):', newEntry);
+    var newEntry = addEntry(data.entries[i]);
     entryContainer.prepend(newEntry);
   }
 }
@@ -93,8 +104,8 @@ function addEntry(entry) {
   dividerCol.className = 'entries-divider-col';
 
   var title = document.createElement('h2');
-  title.className = data.entries.title;
-  title.textContent = 'title text';
+  title.className = 'entries-title';
+  title.textContent = entry.notes;
 
   var imgURL = document.createElement('div');
   imgURL.className = 'img-wrapper1';
@@ -149,16 +160,19 @@ var entryForm = document.querySelector('[data-view="entry-form"]');
 
 /* click event on nav item for entries page view */
 function showEntries() {
-  data.view = 'entries';
+  entryContainer.innerHTML = '';
+  loadEntries();
 
+  data.view = 'entries';
   entryForm.className = 'view-hidden';
   entries.className = 'view';
 
   // Save view to local storage
   var inputToJSON = JSON.stringify(data);
   localStorage.setItem('javascript-local-storage', inputToJSON);
-
 }
+
+/* when user clicks entries, show entries page */
 entriesTab.addEventListener('click', function () {
   data.view = 'entries';
   showEntries();
@@ -176,6 +190,7 @@ function showEntryForm() {
   localStorage.setItem('javascript-local-storage', inputToJSON);
 }
 
+/* When user clicks new button, show entry form */
 var newButton = document.getElementById('newEntryButton');
 newButton.addEventListener('click', function () {
   showEntryForm();
