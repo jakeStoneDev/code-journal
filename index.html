@@ -24,9 +24,9 @@
 </head>
 
 <body>
-<form id="form">
+<div class="flex-contain">
   <main class="content-container">
-<!--Main data view div-->
+  <!--Main data view div-->
       <div class="view" data-view="entry-form">
         <header class="headliner">
           <div class="entries-row">
@@ -43,39 +43,40 @@
           </div>
         </div>
 
-        <div class="row form-row">
+        <form id="form">
+          <div class="row form-row">
 
-              <div class="column-half img-container">
-                  <img id="placed-image" src="images/placeholder-image-square.jpg">
-              </div>
+                <div class="column-half img-container">
+                    <img id="placed-image" src="images/placeholder-image-square.jpg">
+                </div>
 
-              <div class="divider-col">
+                <div class="divider-col">
 
-              </div>
-
-              <div class="column-half">
-                  <label for="title">Title</label>
-                  <input type="text" name="title" id="title" required>
-                  <label for="photo">Photo URL</label>
-                  <input type="url" name="photo" id="photo" required>
-              </div>
-        </div>
-
-        <div class="row">
-              <div class="column-full">
-                  <label for="notes">Notes</label>
-                  <textarea id="notes" col="5" rows="6" required></textarea>
-              </div>
-        </div>
-
-        <div class="row">
-          <div class="column-full flex-end">
-            <input class="purp-button" type="submit" id="save" value="Save">
+                </div>
+                <div class="column-half">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" required>
+                    <label for="photo">Photo URL</label>
+                    <input type="url" name="photo" id="photo" required>
+                </div>
           </div>
-        </div>
+
+            <div class="row">
+                  <div class="column-full">
+                      <label for="notes">Notes</label>
+                      <textarea id="notes" col="5" rows="6" required></textarea>
+                  </div>
+            </div>
+
+            <div class="row">
+              <div class="column-full flex-end">
+                <input class="purp-button" type="submit" id="save" value="Save">
+              </div>
+            </div>
+        </form>
       </div>
   </main>
-</form>
+</div>
   <div class="view-hidden" data-view="entries">
       <header class="headliner">
         <div class="entries-row">
