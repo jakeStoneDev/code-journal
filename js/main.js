@@ -1,6 +1,7 @@
 /* global data */
 /* exported data */
 
+/* push 3 complete */
 /* Content loaded and view set */
 document.addEventListener('DOMContentLoaded', function () {
   loadEntries(data);
