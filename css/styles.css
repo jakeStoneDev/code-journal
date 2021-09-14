@@ -64,6 +64,26 @@ input {
   text-decoration: none;
 }
 
+#delete {
+  min-width: 75px;
+  min-height: 30px;
+  width: 57px;
+  height: 30px;
+  color: white;
+  background-color: rgb(89, 18, 2);
+  visibility: hidden;
+  border: none;
+  margin: 0;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 2px 3px;
+  align-items: flex-end;
+  font-family: open-sans, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
+}
+
 input[type=submit]:hover,
 input[type=button]:hover {
   cursor: pointer;

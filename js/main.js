@@ -186,6 +186,7 @@ entryContainer.addEventListener('click', function (event) {
         localStorage.setItem('javascript-local-storage', inputToJSON);
         showEntryForm();
         currentActivity.textContent = 'Editing';
+        document.getElementById('delete').style.visibility = 'visible';
       }
     }
   }
@@ -232,6 +233,7 @@ function showEntryForm() {
   var inputToJSON = JSON.stringify(data);
   localStorage.setItem('javascript-local-storage', inputToJSON);
   currentActivity.textContent = 'New Entry';
+  document.getElementById('delete').style.visibility = 'hidden';
 }
 
 /* When user clicks new button, show entry form */
