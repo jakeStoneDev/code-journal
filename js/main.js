@@ -1,6 +1,7 @@
 /* global data */
 /* exported data */
 
+var currentActivity = document.getElementById('currentActivity');
 /* Content loaded and view set */
 document.addEventListener('DOMContentLoaded', function () {
   loadEntries(data);
@@ -43,7 +44,6 @@ var form = document.getElementById('form');
 form.addEventListener('submit', function (event) {
 
   event.preventDefault();
-
   /* if an entry is being edited, match the id and change the values to user input */
   if (data.editing !== null) {
 
@@ -185,7 +185,7 @@ entryContainer.addEventListener('click', function (event) {
         var inputToJSON = JSON.stringify(data);
         localStorage.setItem('javascript-local-storage', inputToJSON);
         showEntryForm();
-
+        currentActivity.textContent = 'Editing';
       }
     }
   }
@@ -231,6 +231,7 @@ function showEntryForm() {
   // Save view to local storage
   var inputToJSON = JSON.stringify(data);
   localStorage.setItem('javascript-local-storage', inputToJSON);
+  currentActivity.textContent = 'New Entry';
 }
 
 /* When user clicks new button, show entry form */
