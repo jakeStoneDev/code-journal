@@ -1,11 +1,11 @@
 /* global data */
 /* exported data */
-
+var deleteButton = document.getElementById('delete');
 var currentActivity = document.getElementById('currentActivity');
 /* Content loaded and view set */
 document.addEventListener('DOMContentLoaded', function () {
+  console.log('dom');
   loadEntries(data);
-
   if (data.view === 'entries') {
     showEntries();
   } else {
@@ -95,12 +95,42 @@ form.addEventListener('submit', function (event) {
   showEntries();
 });
 
+var popUp = document.getElementById('overlay');
+var cancelButton = document.getElementById('cancel');
+var confirmButton = document.getElementById('confirm');
+
+deleteButton.addEventListener('click', function (event) {
+  event.preventDefault();
+
+  popUp.style.visibility = 'visible';
+});
+
+cancelButton.addEventListener('click', function (event) {
+  event.preventDefault();
+
+  popUp.style.visibility = 'hidden';
+});
+
+confirmButton.addEventListener('click', function (event) {
+  event.preventDefault();
+
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryId === data.editing.entryId) {
+      data.entries.splice(i, 1);
+    }
+  }
+  var inputToJSON = JSON.stringify(data);
+  localStorage.setItem('javascript-local-storage', inputToJSON);
+  popUp.style.visibility = 'hidden';
+  showEntries();
+}
+);
 /* Loops through data.entries and prepends each index to page */
 var entryContainer = document.getElementById('entry-list');
 var placeholder = document.getElementById('no-entry');
 
 function loadEntries(data) {
-
+  console.log('load entries');
   if (data.entries.length === 0) {
 
     entryContainer.style.display = 'none';
@@ -118,7 +148,7 @@ function loadEntries(data) {
 
 /* This function turns UserInput into a DOM elements */
 function addEntry(entry) {
-
+  console.log('add entry');
   var newEntryRow = document.createElement('div');
   newEntryRow.className = 'entries-row';
 
@@ -186,7 +216,7 @@ entryContainer.addEventListener('click', function (event) {
         localStorage.setItem('javascript-local-storage', inputToJSON);
         showEntryForm();
         currentActivity.textContent = 'Editing';
-        document.getElementById('delete').style.visibility = 'visible';
+        deleteButton.style.visibility = 'visible';
       }
     }
   }
@@ -233,7 +263,7 @@ function showEntryForm() {
   var inputToJSON = JSON.stringify(data);
   localStorage.setItem('javascript-local-storage', inputToJSON);
   currentActivity.textContent = 'New Entry';
-  document.getElementById('delete').style.visibility = 'hidden';
+  deleteButton.style.visibility = 'hidden';
 }
 
 /* When user clicks new button, show entry form */

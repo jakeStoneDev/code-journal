@@ -4,6 +4,48 @@ body {
   font-style: normal;
   color: #262626;
   background-color: #f2f2f2;
+  overflow: hidden;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+#overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.7);
+  visibility: hidden;
+}
+
+.popUp {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 125px;
+  background-color: white;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  font-size: 0.8em;
+  box-sizing: border-box;
+}
+
+.popMenu {
+  padding: 12px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .absoluteImg {
@@ -11,6 +53,7 @@ body {
   top: 0;
   right: 0;
   cursor: pointer;
+  z-index: 1;
 }
 
 .absoluteImg:hover {
@@ -62,6 +105,27 @@ input {
   font-weight: 400;
   font-style: normal;
   text-decoration: none;
+  cursor: pointer;
+}
+
+#confirm {
+  min-width: 75px;
+  min-height: 30px;
+  width: 57px;
+  height: 30px;
+  color: white;
+  background-color: crimson;
+  border: none;
+  margin: 0;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 2px 3px;
+  align-items: flex-end;
+  font-family: open-sans, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 #delete {
@@ -70,7 +134,7 @@ input {
   width: 57px;
   height: 30px;
   color: white;
-  background-color: rgb(89, 18, 2);
+  background-color: crimson;
   visibility: hidden;
   border: none;
   margin: 0;
@@ -82,6 +146,27 @@ input {
   font-weight: 400;
   font-style: normal;
   text-decoration: none;
+  cursor: pointer;
+}
+
+#cancel {
+  min-width: 75px;
+  min-height: 30px;
+  width: 57px;
+  height: 30px;
+  color: white;
+  background-color: gray;
+  border: none;
+  margin: 0;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 2px 3px;
+  align-items: flex-end;
+  font-family: open-sans, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 input[type=submit]:hover,
