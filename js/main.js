@@ -4,7 +4,6 @@ var deleteButton = document.getElementById('delete');
 var currentActivity = document.getElementById('currentActivity');
 /* Content loaded and view set */
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('dom');
   loadEntries(data);
   if (data.view === 'entries') {
     showEntries();
@@ -46,7 +45,6 @@ form.addEventListener('submit', function (event) {
   event.preventDefault();
   /* if an entry is being edited, match the id and change the values to user input */
   if (data.editing !== null) {
-
     for (var i = 0; i < data.entries.length; i++) {
 
       if (data.editing.entryId === data.entries[i].entryId) {
@@ -122,6 +120,7 @@ confirmButton.addEventListener('click', function (event) {
   var inputToJSON = JSON.stringify(data);
   localStorage.setItem('javascript-local-storage', inputToJSON);
   popUp.style.visibility = 'hidden';
+  data.editing = null;
   showEntries();
 }
 );
@@ -130,7 +129,6 @@ var entryContainer = document.getElementById('entry-list');
 var placeholder = document.getElementById('no-entry');
 
 function loadEntries(data) {
-  console.log('load entries');
   if (data.entries.length === 0) {
 
     entryContainer.style.display = 'none';
@@ -148,7 +146,6 @@ function loadEntries(data) {
 
 /* This function turns UserInput into a DOM elements */
 function addEntry(entry) {
-  console.log('add entry');
   var newEntryRow = document.createElement('div');
   newEntryRow.className = 'entries-row';
 
