@@ -1,11 +1,10 @@
 /* global data */
 /* exported data */
-
-/* push 3 complete */
+var deleteButton = document.getElementById('delete');
+var currentActivity = document.getElementById('currentActivity');
 /* Content loaded and view set */
 document.addEventListener('DOMContentLoaded', function () {
   loadEntries(data);
-
   if (data.view === 'entries') {
     showEntries();
   } else {
@@ -44,10 +43,8 @@ var form = document.getElementById('form');
 form.addEventListener('submit', function (event) {
 
   event.preventDefault();
-
   /* if an entry is being edited, match the id and change the values to user input */
   if (data.editing !== null) {
-
     for (var i = 0; i < data.entries.length; i++) {
 
       if (data.editing.entryId === data.entries[i].entryId) {
@@ -96,12 +93,42 @@ form.addEventListener('submit', function (event) {
   showEntries();
 });
 
+var popUp = document.getElementById('overlay');
+var cancelButton = document.getElementById('cancel');
+var confirmButton = document.getElementById('confirm');
+
+deleteButton.addEventListener('click', function (event) {
+  event.preventDefault();
+
+  popUp.style.visibility = 'visible';
+});
+
+cancelButton.addEventListener('click', function (event) {
+  event.preventDefault();
+
+  popUp.style.visibility = 'hidden';
+});
+
+confirmButton.addEventListener('click', function (event) {
+  event.preventDefault();
+
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryId === data.editing.entryId) {
+      data.entries.splice(i, 1);
+    }
+  }
+  var inputToJSON = JSON.stringify(data);
+  localStorage.setItem('javascript-local-storage', inputToJSON);
+  popUp.style.visibility = 'hidden';
+  data.editing = null;
+  showEntries();
+}
+);
 /* Loops through data.entries and prepends each index to page */
 var entryContainer = document.getElementById('entry-list');
 var placeholder = document.getElementById('no-entry');
 
 function loadEntries(data) {
-
   if (data.entries.length === 0) {
 
     entryContainer.style.display = 'none';
@@ -119,7 +146,6 @@ function loadEntries(data) {
 
 /* This function turns UserInput into a DOM elements */
 function addEntry(entry) {
-
   var newEntryRow = document.createElement('div');
   newEntryRow.className = 'entries-row';
 
@@ -186,7 +212,8 @@ entryContainer.addEventListener('click', function (event) {
         var inputToJSON = JSON.stringify(data);
         localStorage.setItem('javascript-local-storage', inputToJSON);
         showEntryForm();
-
+        currentActivity.textContent = 'Editing';
+        deleteButton.style.visibility = 'visible';
       }
     }
   }
@@ -232,6 +259,8 @@ function showEntryForm() {
   // Save view to local storage
   var inputToJSON = JSON.stringify(data);
   localStorage.setItem('javascript-local-storage', inputToJSON);
+  currentActivity.textContent = 'New Entry';
+  deleteButton.style.visibility = 'hidden';
 }
 
 /* When user clicks new button, show entry form */

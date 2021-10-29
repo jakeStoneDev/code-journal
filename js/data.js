@@ -6,13 +6,6 @@ var data = {
   nextEntryId: 1
 };
 
-/*
-window.addEventListener('beforeunload', function (event) {
-  var stateJSON = JSON.stringify(data);
-  localStorage.setItem('javascript-local-storage', stateJSON);
-});
-*/
-
 /* Below this line, listens for the submit event to occur */
 /* read local storage for JSON */
 var previousUserInput;
